@@ -129,7 +129,7 @@ section.second{
 }
 
 .item:hover{
-    transform: scale(1.5);
+    transform: scale($item-scalation);
     z-index: 10;
 }
 
