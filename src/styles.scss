@@ -1,0 +1,169 @@
+$background-color: #141414;
+$text-color: white;
+$hover-text-color: #141414;
+$hover-background-color: white;
+$item-scalation: 1.3;
+
+*{
+    box-sizing: border-box;
+}
+
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@mixin center-align{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin background-color{
+    background-color: $background-color;
+}
+
+.content-padding{
+    & * {
+        padding: 5px;
+    }
+}
+
+body, html{
+    padding: 0;
+    margin: 0;
+    @include background-color();
+    color: $text-color;
+}
+
+main{
+    padding: 5px;
+    overflow-x: hidden;
+}
+
+header{
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    justify-content: space-between;
+    @include flex-row();
+    @include background-color();
+    @extend .content-padding;
+}
+
+#top-text::before{
+    content: '5';
+}
+
+.header-logo{
+    @include flex-row();
+    @extend .content-padding;
+}
+
+.header-buttons{
+    @include flex-row();
+    @extend .content-padding;
+    font-size: 12px;
+
+    & div {
+        padding: 25px;
+        height: 18px;
+        border-radius: 3px;
+        font-size: 15px;
+        @include center-align();
+    }
+
+    & div:hover{
+        background-color: $hover-background-color;
+        color: $hover-text-color;
+    }
+}
+
+.platform-title{
+    font-size: 20px;
+}
+
+.section-title {
+    margin-top: 15px;
+    margin-bottom: 5px;
+} 
+
+section.top{
+    @include flex-row();
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    width: 100vw;
+
+    & div {
+        width: calc(100%/5);
+
+        & img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+section.first,
+section.second{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 10px;
+}
+
+.item {
+    flex: 0 1 auto;
+    transition: all 1s ease-in-out;
+    
+    & img {
+        min-height: 0%;
+        max-height: 100%;
+        min-width: 0%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+}
+
+.item:hover{
+    transform: scale(1.5);
+    z-index: 10;
+}
+
+@media (max-width: 1279px) {
+    .platform-title{
+        display: none;
+    }
+
+    #top-text::before{
+        content: '3';
+    }
+
+    section.top,
+    section.first,
+    section.second{
+        flex-wrap: wrap;
+    }
+
+    .top-item{
+        min-width: 225px;
+    }
+
+    .item{
+        min-width: 250px;
+    }
+
+    .top-item:nth-child(1),
+    .top-item:nth-child(2){
+        display: none;
+    }
+  }
+
+  @media (max-width: 800px) {
+    section.top{
+        flex-direction: column-reverse;
+    }
+  }
